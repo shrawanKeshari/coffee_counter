@@ -68,11 +68,6 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + i);
     }
 
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-    }
-
     private void displayMessage(String name) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(name);
