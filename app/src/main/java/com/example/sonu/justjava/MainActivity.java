@@ -1,8 +1,10 @@
 package com.example.sonu.justjava;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,7 +16,7 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 2;
+    int quantity = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void decrement(View view) {
-        quantity = quantity - 1;
-        display(quantity);
+        if (quantity == 0) {
+            dialog("Can't go beyond zero");
+        } else {
+            quantity = quantity - 1;
+            display(quantity);
+        }
+    }
+
+    private void dialog(String s) {
+        AlertDialog.Builder al = new AlertDialog.Builder(this);
+        al.setTitle("Alert Dialog");
+        al.setMessage(s);
+
+        al.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int button1) {
+                        dialog.cancel();
+                    }
+
+                });
+        AlertDialog alertDialog = al.create();
+        al.show();
     }
 
     public void submitOrder(View view) {
