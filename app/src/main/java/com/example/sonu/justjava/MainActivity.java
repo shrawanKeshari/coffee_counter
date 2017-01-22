@@ -2,8 +2,6 @@ package com.example.sonu.justjava;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,8 +9,6 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-
-import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void increment(View view) {
         quantity = quantity + 1;
-        display(quantity);
+        displayQuantity(quantity);
     }
 
     public void decrement(View view) {
@@ -58,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             dialog("Can't go beyond zero");
         } else {
             quantity = quantity - 1;
-            display(quantity);
+            displayQuantity(quantity);
         }
     }
 
@@ -86,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         displayMessage(priceMessage);
     }
 
-    private void display(int i) {
+    private void displayQuantity(int i) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + i);
     }
