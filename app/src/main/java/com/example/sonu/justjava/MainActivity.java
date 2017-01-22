@@ -77,19 +77,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitOrder(View view) {
         int price = calculatePrice(quantity);
-        String priceMessage = "Total: $" + price;
-        priceMessage = priceMessage + "\nThank You!";
+        String priceMessage = createOrderSummary(quantity, price);
         displayMessage(priceMessage);
     }
 
     private int calculatePrice(int quantity) {
-        int price = quantity*5;
+        int price = quantity * 5;
         return price;
     }
 
-    private void displayQuantity(int i) {
+    private String createOrderSummary(int quantity_, int price_) {
+        String message = "Name: Shrawan Kumar Keshari";
+        message += "\nQuantity: " + quantity_ + "\nTotal: $" + price_ + "\nThank You!";
+        return message;
+    }
+
+    private void displayQuantity(int numberOfCoffees) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + i);
+        quantityTextView.setText("" + numberOfCoffees);
     }
 
     private void displayMessage(String name) {
