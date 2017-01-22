@@ -76,10 +76,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view) {
-        int price = quantity * 5;
+        int price = calculatePrice(quantity);
         String priceMessage = "Total: $" + price;
         priceMessage = priceMessage + "\nThank You!";
         displayMessage(priceMessage);
+    }
+
+    private int calculatePrice(int quantity) {
+        int price = quantity*5;
+        return price;
     }
 
     private void displayQuantity(int i) {
