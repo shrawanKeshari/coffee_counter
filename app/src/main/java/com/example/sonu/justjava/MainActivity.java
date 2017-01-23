@@ -8,11 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
+    CheckBox cb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +78,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view) {
+        cb = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        boolean hasWhippedCream = cb.isChecked();
         int price = calculatePrice(quantity);
-        String priceMessage = createOrderSummary(quantity, price);
+        String priceMessage = createOrderSummary(quantity, price, hasWhippedCream);
         displayMessage(priceMessage);
     }
 
@@ -86,8 +90,9 @@ public class MainActivity extends AppCompatActivity {
         return price;
     }
 
-    private String createOrderSummary(int quantity_, int price_) {
+    private String createOrderSummary(int quantity_, int price_, boolean hasWhippedCream_) {
         String message = "Name: Shrawan Kumar Keshari";
+        message += "\nAdd Whipped Cream? " + hasWhippedCream_;
         message += "\nQuantity: " + quantity_ + "\nTotal: $" + price_ + "\nThank You!";
         return message;
     }
@@ -98,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayMessage(String name) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(name);
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(name);
     }
 }
