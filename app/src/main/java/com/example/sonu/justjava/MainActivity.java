@@ -9,12 +9,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
-    CheckBox cb;
+    CheckBox cb_whipped, cb_chocolate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,50 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void submitOrder(View view) {
+        EditText et = (EditText) findViewById(R.id.name_field);
+        String name = et.getText().toString();
+
+        if (name.equals("")) {
+            dialog("Please Enter the name");
+        } else {
+            cb_whipped = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+            boolean hasWhippedCream = cb_whipped.isChecked();
+
+            cb_chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
+            boolean hasChocolate = cb_chocolate.isChecked();
+
+            int price = calculatePrice(quantity);
+            String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, name);
+            displayMessage(priceMessage);
+        }
+    }
+
+    private int calculatePrice(int quantity) {
+        int price = quantity * 5;
+        return price;
+    }
+
+    private String createOrderSummary(int price_, boolean hasWhippedCream_,
+                                      boolean hasChocolate_, String name_) {
+        String message = "Name: " + name_;
+        message += "\nAdd Whipped Cream? " + hasWhippedCream_;
+        message += "\nAdd Chocolate? " + hasChocolate_;
+        message += "\nQuantity: " + quantity;
+        message += "\nTotal: $" + price_ + "\nThank You!";
+        return message;
+    }
+
+    private void displayQuantity(int numberOfCoffees) {
+        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+        quantityTextView.setText("" + numberOfCoffees);
+    }
+
+    private void displayMessage(String name) {
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(name);
+    }
+
     private void dialog(String s) {
         AlertDialog.Builder al = new AlertDialog.Builder(this);
         al.setTitle("Alert Dialog");
@@ -75,35 +120,5 @@ public class MainActivity extends AppCompatActivity {
                 });
         AlertDialog alertDialog = al.create();
         al.show();
-    }
-
-    public void submitOrder(View view) {
-        cb = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
-        boolean hasWhippedCream = cb.isChecked();
-        int price = calculatePrice(quantity);
-        String priceMessage = createOrderSummary(quantity, price, hasWhippedCream);
-        displayMessage(priceMessage);
-    }
-
-    private int calculatePrice(int quantity) {
-        int price = quantity * 5;
-        return price;
-    }
-
-    private String createOrderSummary(int quantity_, int price_, boolean hasWhippedCream_) {
-        String message = "Name: Shrawan Kumar Keshari";
-        message += "\nAdd Whipped Cream? " + hasWhippedCream_;
-        message += "\nQuantity: " + quantity_ + "\nTotal: $" + price_ + "\nThank You!";
-        return message;
-    }
-
-    private void displayQuantity(int numberOfCoffees) {
-        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + numberOfCoffees);
-    }
-
-    private void displayMessage(String name) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(name);
     }
 }
