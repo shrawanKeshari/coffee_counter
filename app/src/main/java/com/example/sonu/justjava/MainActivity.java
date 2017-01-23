@@ -74,14 +74,19 @@ public class MainActivity extends AppCompatActivity {
             cb_chocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
             boolean hasChocolate = cb_chocolate.isChecked();
 
-            int price = calculatePrice(quantity);
+            int price = calculatePrice(quantity, hasWhippedCream, hasChocolate);
             String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, name);
             displayMessage(priceMessage);
         }
     }
 
-    private int calculatePrice(int quantity) {
-        int price = quantity * 5;
+    private int calculatePrice(int quantity, boolean hasWhippedCream, boolean hasChocolate) {
+        int basePrice = 5;
+        if (hasWhippedCream)
+            basePrice += 1;
+        if (hasChocolate)
+            basePrice += 2;
+        int price = quantity * basePrice;
         return price;
     }
 
