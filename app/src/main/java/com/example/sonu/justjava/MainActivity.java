@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 0;
+    int quantity = 1;
     CheckBox cb_whipped, cb_chocolate;
 
     @Override
@@ -48,13 +48,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void increment(View view) {
+        if (quantity == 100) {
+            dialog("Can't go above 100 Coffee");
+        }
         quantity = quantity + 1;
         displayQuantity(quantity);
     }
 
     public void decrement(View view) {
-        if (quantity == 0) {
-            dialog("Can't go beyond zero");
+        if (quantity == 1) {
+            dialog("Can't go beyond One Coffee");
         } else {
             quantity = quantity - 1;
             displayQuantity(quantity);
