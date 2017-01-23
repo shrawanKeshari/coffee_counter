@@ -1,6 +1,8 @@
 package com.example.sonu.justjava;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 1;
+    String name, priceMessage;
     CheckBox cb_whipped, cb_chocolate;
 
     @Override
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitOrder(View view) {
         EditText et = (EditText) findViewById(R.id.name_field);
-        String name = et.getText().toString();
+        name = et.getText().toString();
 
         if (name.equals("")) {
             dialog("Please Enter the name");
@@ -78,8 +81,18 @@ public class MainActivity extends AppCompatActivity {
             boolean hasChocolate = cb_chocolate.isChecked();
 
             int price = calculatePrice(quantity, hasWhippedCream, hasChocolate);
-            String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, name);
+            priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, name);
             displayMessage(priceMessage);
+        }
+    }
+
+    public void emailTo(View view) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + name);
+        intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
         }
     }
 
