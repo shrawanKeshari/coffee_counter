@@ -21,7 +21,7 @@
             android:id="@+id/name_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name"
+            android:hint="@string/name"
             android:inputType="textCapWords" />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
-            android:text="Toppings"
+            android:text="@string/toppings"
             android:textAllCaps="true"
             android:textColor="#9e9e9e"
             android:textSize="16sp" />
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="24dp"
-            android:text="Whipped Cream"
+            android:text="@string/whipped_cream"
             android:textSize="16sp" />
 
         <CheckBox
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="24dp"
-            android:text="Chocolate"
+            android:text="@string/chocolate"
             android:textSize="16sp" />
 
         <TextView
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
-            android:text="Quantity"
+            android:text="@string/quantity"
             android:textAllCaps="true"
             android:textColor="#9e9e9e"
             android:textSize="16sp" />
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
-            android:text="Order Summary"
+            android:text="@string/order_summary"
             android:textAllCaps="true"
             android:textColor="#9e9e9e"
             android:textSize="16sp" />
@@ -105,7 +105,7 @@
             android:id="@+id/order_summary_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$0"
+            android:text="0"
             android:textColor="#000000"
             android:textSize="16sp" />
 

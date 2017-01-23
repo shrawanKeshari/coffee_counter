@@ -14,6 +14,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
+
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 1;
@@ -112,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
         message += "\nAdd Whipped Cream? " + hasWhippedCream_;
         message += "\nAdd Chocolate? " + hasChocolate_;
         message += "\nQuantity: " + quantity;
-        message += "\nTotal: $" + price_ + "\nThank You!";
+        message += "\nTotal: " + NumberFormat.getCurrencyInstance().format(price_);
+        message += getString(R.string.thank_you);
         return message;
     }
 
